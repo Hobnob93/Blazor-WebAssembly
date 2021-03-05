@@ -1,5 +1,6 @@
 ﻿using BlazorBattles.Client.Interfaces;
 using BlazorBattles.Shared.Models;
+using Blazored.Toast.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,17 @@ namespace BlazorBattles.Client.Services
 {
     public class UnitService : IUnitService
     {
+        private readonly IToastService toast;
+
+
         public IList<UnitTemplate> Templates { get; private set; }
         public IList<UnitInstance> Instances { get; private set; }
 
 
-        public UnitService()
+        public UnitService(IToastService toast)
         {
+            this.toast = toast ?? throw new ArgumentNullException(nameof(toast));
+
             Templates = new List<UnitTemplate>
             {
                 new UnitTemplate { Id = 1, Title = "Knight", Damage = 10, Defense = 10, Cost = 100 },
@@ -34,6 +40,7 @@ namespace BlazorBattles.Client.Services
         {
             var unit = Templates.Single(u => u.Id == unitId);
             Instances.Add(new UnitInstance { UnitId = unit.Id, Health = unit.Health });
+            toast.ShowSuccess($"Your {unit.Title} has been built!", "Unit Built");
         }
 
         public string SelectIcon(int unitId)
