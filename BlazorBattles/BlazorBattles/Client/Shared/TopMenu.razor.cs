@@ -1,16 +1,30 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorBattles.Client.Interfaces;
+using Microsoft.AspNetCore.Components;
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace BlazorBattles.Client.Shared
 {
-    public partial class TopMenu
+    public partial class TopMenu : IDisposable
     {
-        [Parameter]
-        public int Bananas { get; set; } = 100;
+        [Inject]
+        public IBananaService Bananas { get; private set; }
 
+
+        protected override void OnInitialized()
+        {
+            Bananas.OnChange += StateHasChanged;
+        }
+
+        [SuppressMessage("Usage", "CA1816", Justification = "Dispose methods should call SuppressFinalize")]
+        public void Dispose()
+        {
+            Bananas.OnChange -= StateHasChanged;
+        }
 
         public void AddBananas(int amount)
         {
-            Bananas += amount;
+            Bananas.Increase(amount);
         }
     }
 }

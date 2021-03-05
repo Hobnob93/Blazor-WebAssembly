@@ -1,9 +1,13 @@
-﻿namespace BlazorBattles.Client.Interfaces
+﻿using System;
+
+namespace BlazorBattles.Client.Interfaces
 {
     public interface IBananaService
     {
-        int Bananas { get; set; }
+        event Action OnChange;
+        int Count { get; }
 
-        void ConsumeBananas(int amount);
+        void Consume(int amount);
+        void Increase(int amount);
     }
 }
