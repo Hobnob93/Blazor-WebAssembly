@@ -2,4 +2,13 @@
 
 <h3>Build</h3>
 
+<div class="form-group">
+    <select @bind="selectedUnitTemplateId" class="form-control">
+        @foreach (var t in Units.Templates)
+        {
+            <option value="@t.Id">@t.Title [@t.Cost bananas]</option>
+        }
+    </select>
+</div>
+
 <button @onclick="BuildUnit" class="btn btn-primary">Build</button>

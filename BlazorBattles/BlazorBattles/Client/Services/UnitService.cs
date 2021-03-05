@@ -1,5 +1,6 @@
 ﻿using BlazorBattles.Client.Interfaces;
 using BlazorBattles.Shared.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,6 +34,9 @@ namespace BlazorBattles.Client.Services
         {
             var unit = Templates.Single(u => u.Id == unitId);
             Instances.Add(new UnitInstance { UnitId = unit.Id, Health = unit.Health });
+
+            Console.WriteLine($"{unit.Title} was built!");
+            Console.WriteLine($"Your army size: {Instances.Count}");
         }
     }
 }
