@@ -1,16 +1,17 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorBattles.Client.Interfaces;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazorBattles.Client.Shared
 {
     public partial class AddBananas
     {
-        [Parameter]
-        public EventCallback<int> BananasAdded { get; set; } 
+        [Inject]
+        public IBananaService Bananas { get; private set; }
 
 
         public void IncreaseBananaCount()
         {
-            BananasAdded.InvokeAsync(10);
+            Bananas.Increase(10);
         }
     }
 }

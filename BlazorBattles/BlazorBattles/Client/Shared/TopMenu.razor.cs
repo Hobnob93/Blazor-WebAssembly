@@ -21,10 +21,5 @@ namespace BlazorBattles.Client.Shared
         {
             Bananas.OnChange -= StateHasChanged;
         }
-
-        public void AddBananas(int amount)
-        {
-            Bananas.Increase(amount);
-        }
     }
 }
