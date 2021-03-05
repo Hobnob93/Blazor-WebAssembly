@@ -5,9 +5,10 @@ namespace BlazorBattles.Client.Interfaces
 {
     public interface IUnitService
     {
-        IList<Unit> Units { get; }
-        IList<UserUnit> UserUnits { get; }
+        IList<UnitTemplate> Templates { get; }
+        IList<UnitInstance> Instances { get; }
 
-        void AddUnit(int unitId);
+        UnitTemplate FindTemplate(int unitId);
+        void AddInstance(int unitId);
     }
 }

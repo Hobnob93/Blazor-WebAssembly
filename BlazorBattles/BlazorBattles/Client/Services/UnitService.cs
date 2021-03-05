@@ -7,26 +7,32 @@ namespace BlazorBattles.Client.Services
 {
     public class UnitService : IUnitService
     {
-        public IList<Unit> Units { get; private set; }
-        public IList<UserUnit> UserUnits { get; private set; }
+        public IList<UnitTemplate> Templates { get; private set; }
+        public IList<UnitInstance> Instances { get; private set; }
 
 
         public UnitService()
         {
-            Units = new List<Unit>
+            Templates = new List<UnitTemplate>
             {
-                new Unit { Id = 1, Title = "Knight", Damage = 10, Defense = 10, Cost = 100 },
-                new Unit { Id = 2, Title = "Archer", Damage = 15, Defense = 5, Cost = 150 },
-                new Unit { Id = 3, Title = "Mage", Damage = 20, Defense = 1, Cost = 200 }
+                new UnitTemplate { Id = 1, Title = "Knight", Damage = 10, Defense = 10, Cost = 100 },
+                new UnitTemplate { Id = 2, Title = "Archer", Damage = 15, Defense = 5, Cost = 150 },
+                new UnitTemplate { Id = 3, Title = "Mage", Damage = 20, Defense = 1, Cost = 200 }
             };
 
-            UserUnits = new List<UserUnit>();
+            Instances = new List<UnitInstance>();
         }
 
-        public void AddUnit(int unitId)
+
+        public UnitTemplate FindTemplate(int unitId)
         {
-            var unit = Units.Single(u => u.Id == unitId);
-            UserUnits.Add(new UserUnit { UnitId = unit.Id, Health = unit.Health });
+            return Templates.Single(u => u.Id == unitId);
+        }
+
+        public void AddInstance(int unitId)
+        {
+            var unit = Templates.Single(u => u.Id == unitId);
+            Instances.Add(new UnitInstance { UnitId = unit.Id, Health = unit.Health });
         }
     }
 }

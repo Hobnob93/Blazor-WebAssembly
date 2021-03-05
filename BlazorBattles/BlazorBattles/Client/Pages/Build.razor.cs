@@ -8,10 +8,17 @@ namespace BlazorBattles.Client.Pages
         [Inject]
         public IBananaService Bananas { get; private set; }
 
+        [Inject]
+        public IUnitService Units { get; private set; }
 
-        private void ConsumeBananas(int amount)
+        private int selectedUnitTemplateId = 1;
+
+
+        public void BuildUnit()
         {
-            Bananas.Consume(amount);
+            var unitTemplate = Units.FindTemplate(selectedUnitTemplateId);
+            Bananas.Consume(unitTemplate.Cost);
+            Units.AddInstance(unitTemplate.Id);
         }
     }
 }

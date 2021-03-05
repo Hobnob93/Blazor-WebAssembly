@@ -1,6 +1,6 @@
 ﻿namespace BlazorBattles.Shared.Models
 {
-    public class Unit
+    public class UnitTemplate
     {
         public int Id { get; set; }
         public string Title { get; set; }
