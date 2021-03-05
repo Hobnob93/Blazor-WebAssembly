@@ -38,5 +38,21 @@ namespace BlazorBattles.Client.Services
             Console.WriteLine($"{unit.Title} was built!");
             Console.WriteLine($"Your army size: {Instances.Count}");
         }
+
+        public string SelectIcon(int unitId)
+        {
+            return unitId switch
+            {
+                1 => "icons/W_Sword006.png",
+                2 => "icons/S_Bow08.png",
+                3 => "icons/C_Hat01.png",
+                _ => string.Empty
+            };
+        }
+
+        public string SelectTitle(int unitId)
+        {
+            return Templates.SingleOrDefault(u => u.Id == unitId)?.Title ?? string.Empty;
+        }
     }
 }

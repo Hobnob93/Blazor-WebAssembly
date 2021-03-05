@@ -1,3 +1,18 @@
 ﻿@page "/army"
 
 <h3>Army</h3>
+
+@foreach (var u in Units.Instances)
+{
+    <div class="army-list">
+        <div>
+            <img src="@Units.SelectIcon(u.UnitId)" />
+        </div>
+        <div>
+            @Units.SelectTitle(u.UnitId)
+        </div>
+        <div>
+            @u.Health HP
+        </div>
+    </div>
+}

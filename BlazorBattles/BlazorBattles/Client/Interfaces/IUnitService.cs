@@ -10,5 +10,8 @@ namespace BlazorBattles.Client.Interfaces
 
         UnitTemplate FindTemplate(int unitId);
         void AddInstance(int unitId);
+
+        string SelectIcon(int unitId);
+        string SelectTitle(int unitId);
     }
 }
